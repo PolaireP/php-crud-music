@@ -23,7 +23,7 @@ SQL
 $stmt->execute();
 
 while (($ligne = $stmt->fetch()) !== false) {
-    $webpage ->appendContent("<p>{$ligne['name']}\n");
+    $webpage ->appendContent("<p>". $webpage->escapeString("{$ligne['name']}\n"));
 }
 
 echo $webpage ->toHTML();
