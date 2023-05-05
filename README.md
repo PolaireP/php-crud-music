@@ -20,10 +20,18 @@ php vendor/bin/php-cs-fixer fix --dry-run
 
 Seconde vérification avec visualisation des corrections possible
 ```apacheconf
+composer test:cs
+```
+ou
+```apacheconf
 php vendor/bin/php-cs-fixer fix --dry-run --diff
 ```
 
 Application des corrections possibles
+```apacheconf
+composer fix:cs
+```
+ou
 ```apacheconf
 php vendor/bin/php-cs-fixer fix
 ```
