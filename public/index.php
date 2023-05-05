@@ -9,7 +9,7 @@ use Html\WebPage;
 
 $webpage = new WebPage();
 
-MyPDO::setConfiguration('mysql:host=mysql;dbname=cutron01_music;charset=utf8', 'web', 'web');
+
 
 $stmt = MyPDO::getInstance()->prepare(
     <<<'SQL'

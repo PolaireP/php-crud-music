@@ -35,3 +35,8 @@ ou
 ```apacheconf
 php vendor/bin/php-cs-fixer fix
 ```
+
+### Configuration de la base de donnée
+
+Le fichier ``.mypdo.ini`` permet de faciliter la connexion à la base de donnée, notament en l'intégrant à la commande
+``start:linux``.
