@@ -5,9 +5,10 @@ namespace Tests\Helper;
 // all public methods declared in helper class will be available in $I
 
 use Codeception\Exception\ModuleException;
+use Codeception\Module;
 use Database\MyPdo;
 
-class Crud extends \Codeception\Module
+class Crud extends Module
 {
     public function _initialize($settings = [])
     {

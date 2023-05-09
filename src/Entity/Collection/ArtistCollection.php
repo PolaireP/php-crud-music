@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Collection;
+namespace Entity\Collection;
 
 use Database\MyPdo;
 use Entity\Artist;
@@ -20,9 +20,9 @@ class ArtistCollection
     {
         $request = MyPdo::getInstance()->prepare(
             <<<SQL
-            SELECT id, nom
+            SELECT id, name
             FROM artist
-            ORDER BY nom
+            ORDER BY name
         SQL
         );
 
