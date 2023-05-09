@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 use Database\MyPdo;
@@ -18,9 +19,9 @@ if(isset($_GET['artistId']) && ctype_digit($_GET['artistId'])) {
     $webpage = new WebPage();
     if ($requete->rowCount() == 0) {
         http_response_code(404);
+        header('Location: index.php', response_code: 302);
         exit();
-    }
-    else {
+    } else {
         $nom = $webpage->escapeString($requete->fetch()['name']);
         $webpage->setTitle("Album de " . $nom);
 

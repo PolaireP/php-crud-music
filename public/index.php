@@ -20,7 +20,7 @@ SQL
 $stmt->execute();
 
 while (($ligne = $stmt->fetch()) !== false) {
-    $webpage ->appendContent("<p>". $webpage->escapeString("{$ligne['name']}\n"));
+    $webpage ->appendContent('<p><a href="/artist.php?artistId='. $webpage->escapeString("{$ligne['id']}\n"). '">'. $webpage->escapeString("{$ligne['name']}\n"));
 }
 
 echo $webpage ->toHTML();
