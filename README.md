@@ -40,3 +40,11 @@ php vendor/bin/php-cs-fixer fix
 
 Le fichier ``.mypdo.ini`` permet de faciliter la connexion à la base de donnée, notament en l'intégrant à la commande
 ``start:linux``.
+
+### Tests
+
+Afin de simplifier les tests du code, les scripts ``tests:cs`` et ``test:codecept`` ont été regroupé dans le script ``test``
+
+```apacheconf
+composer test
+```
