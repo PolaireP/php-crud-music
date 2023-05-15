@@ -16,7 +16,7 @@ class AlbumCollection
             <<<SQL
             SELECT id, name, year, artistId, genreId, coverId
             FROM album
-            WHERE artistID = ?
+            WHERE artistId = ?
             
             SQL
         );

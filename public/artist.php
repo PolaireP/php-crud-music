@@ -11,10 +11,10 @@ if(isset($_GET['artistId']) && ctype_digit($_GET['artistId'])) {
     $requete = MyPDO::getInstance()->prepare(<<<SQL
         SELECT name
         FROM artist
-        WHERE id = {$artistId};
+        WHERE id = ?;
     SQL);
 
-    $requete->execute();
+    $requete->execute([$artistId]);
 
     $webpage = new WebPage();
     if ($requete->rowCount() == 0) {
@@ -30,7 +30,7 @@ if(isset($_GET['artistId']) && ctype_digit($_GET['artistId'])) {
             
             SELECT year, name
             FROM album
-            WHERE artistID = {$artistId}
+            WHERE artistId = {$artistId}
             ORDER BY year DESC, name;
             
         SQL
