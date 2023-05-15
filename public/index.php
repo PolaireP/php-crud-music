@@ -10,7 +10,7 @@ $webpage = new WebPage();
 
 
 
-$stmt = (new Entity\Collection\ArtistCollection)->findAll();
+$stmt = (new Entity\Collection\ArtistCollection())->findAll();
 
 /*
 while (($ligne = $stmt->fetch()) !== false) {
