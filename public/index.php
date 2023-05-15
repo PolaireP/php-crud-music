@@ -4,23 +4,26 @@ declare(strict_types=1);
 
 use Database\MyPdo;
 use Html\WebPage;
+use Entity\Collection\ArtistCollection;
 
 $webpage = new WebPage();
 
 
 
-$stmt = MyPDO::getInstance()->prepare(
-    <<<'SQL'
-    SELECT id, name
-    FROM artist
-    ORDER BY name
-SQL
-);
+$stmt = (new Entity\Collection\ArtistCollection)->findAll();
 
-$stmt->execute();
-
+/*
 while (($ligne = $stmt->fetch()) !== false) {
     $webpage ->appendContent('<p><a href="/artist.php?artistId='. $webpage->escapeString("{$ligne['id']}\n"). '">'. $webpage->escapeString("{$ligne['name']}\n"));
 }
+*/
+
+$index = 0;
+
+while ($index < sizeof($stmt)) {
+    $webpage -> appendContent('<p><a href="/artist.php?artistId='. $webpage->escapeString($stmt[$index]->getId()."\n"). '">'. $webpage->escapeString($stmt[$index]->getName()."\n"));
+    $index++;
+}
+
 
 echo $webpage ->toHTML();
