@@ -21,7 +21,7 @@ while (($ligne = $stmt->fetch()) !== false) {
 $index = 0;
 
 while ($index < sizeof($stmt)) {
-    $webpage -> appendContent('<p><a href="/artist.php?artistId='. $webpage->escapeString($stmt[$index]->getId()."\n"). '">'. $webpage->escapeString($stmt[$index]->getName()."\n"));
+    $webpage -> appendContent('<p><a href="/artist.php?artistId='. $webpage->escapeString(strval($stmt[$index]->getId())). '">'. $webpage->escapeString($stmt[$index]->getName()."\n"));
     $index++;
 }
 
