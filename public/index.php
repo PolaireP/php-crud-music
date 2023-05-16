@@ -7,7 +7,7 @@ use Html\WebPage;
 use Entity\Collection\ArtistCollection;
 use Html\AppWebpage;
 
-$webpage = new AppWebpage();
+$webpage = new AppWebpage('Feur');
 
 
 

@@ -59,7 +59,6 @@ if(isset($_GET['artistId']) && ctype_digit($_GET['artistId'])) {
         $artiste = (new Entity\Artist())->findById($artistId);
     } catch (EntityNotFoundException) {
         http_response_code(404);
-        header('Location: index.php', response_code: 302);
         exit();
     }
 
