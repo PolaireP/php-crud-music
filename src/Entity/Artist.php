@@ -53,6 +53,6 @@ class Artist
 
     public function getAlbums(): array
     {
-        return AlbumCollection::class->findByArtistId($this->id);
+        return (new Collection\AlbumCollection)->findByArtistId($this->id);
     }
 }

@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 use Database\MyPdo;
 use Html\WebPage;
+use Entity\Artist;
+use Entity\Exception\EntityNotFoundException;
 
+/**
 if(isset($_GET['artistId']) && ctype_digit($_GET['artistId'])) {
     $artistId = $_GET['artistId'];
 
@@ -27,12 +30,12 @@ if(isset($_GET['artistId']) && ctype_digit($_GET['artistId'])) {
 
         $reqAlbums = MyPDO::getInstance()->prepare(
             <<<SQL
-            
+
             SELECT year, name
             FROM album
             WHERE artistId = {$artistId}
             ORDER BY year DESC, name;
-            
+
         SQL
         );
 
@@ -41,6 +44,34 @@ if(isset($_GET['artistId']) && ctype_digit($_GET['artistId'])) {
         while (($ligne = $reqAlbums->fetch()) !== false) {
             $webpage->appendContent("<p>" . $ligne['year'] . ' ' . $webpage->escapeString($ligne['name']));
         }
+    }
+    echo $webpage->toHTML();
+} else {
+    header('Location: index.php', response_code: 302);
+    exit();
+}
+**/
+
+if(isset($_GET['artistId']) && ctype_digit($_GET['artistId'])) {
+    $artistId = intval($_GET['artistId']);
+
+    try {
+        $artiste = (new Entity\Artist())->findById($artistId);
+    } catch (EntityNotFoundException) {
+        http_response_code(404);
+        header('Location: index.php', response_code: 302);
+        exit();
+    }
+
+    $webpage = new WebPage('Album de '. $artiste->getName());
+
+    $albums = $artiste->getAlbums();
+
+    $index = 0;
+    while ($index < count($albums)) {
+        $actualAlbum = $albums[$index];
+        $webpage->appendContent("<p>" . $actualAlbum->getYear() . ' ' . $webpage->escapeString($actualAlbum->getName()));
+        $index++;
     }
     echo $webpage->toHTML();
 } else {
