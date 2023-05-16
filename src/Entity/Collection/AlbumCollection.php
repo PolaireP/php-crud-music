@@ -17,7 +17,7 @@ class AlbumCollection
             SELECT id, name, year, artistId, genreId, coverId
             FROM album
             WHERE artistId = ?
-            
+            ORDER BY year DESC, name;
             SQL
         );
 

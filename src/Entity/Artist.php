@@ -43,11 +43,11 @@ class Artist
 
         $request->execute([$id]);
 
-        if ($request->rowCount() == 0) {
-            throw new EntityNotFoundException('Artiste introuvable');
+        $request->setFetchMode(PDO::FETCH_CLASS, Artist::class);
+        if ($reqFetch = $request->fetch()) {
+            return $reqFetch;
         } else {
-            $request->setFetchMode(PDO::FETCH_CLASS, Artist::class);
-            return $request->fetch();
+            throw new EntityNotFoundException('Artiste introuvable');
         }
     }
 
