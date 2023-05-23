@@ -30,7 +30,7 @@ body > * {
 }
 
 .content > p {
-    background-color: aquamarine;
+    background-color: #f8f8f8;
     border-radius: 3px;
     padding: 8px;
     width: calc(100% - 60px);
@@ -47,4 +47,8 @@ a {
 .footer {
     flex-grow: 1;
     text-align: center;
+}
+
+h1 {
+    color: #fff;
 }
