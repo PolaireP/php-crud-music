@@ -42,6 +42,8 @@
             "php vendor/bin/codecept run"
         ],
         "test" : [ "@test:cs",
-            "@test:codecept"]
+            "@test:codecept"],
+        "test:browse" : ["php vendor/bin/codecept clean",
+        "php vendor/bin/codecept run Browse"]
     }
 }

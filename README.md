@@ -48,3 +48,8 @@ Afin de simplifier les tests du code, les scripts ``tests:cs`` et ``test:codecep
 ```apacheconf
 composer test
 ```
+
+De plus, un test pour vérifier le bon fonctionnement de la page existe, il vous suffit de lancer la commande suivante :
+````apacheconf
+composer test:browse
+````
