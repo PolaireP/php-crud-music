@@ -20,6 +20,10 @@ body > * {
     flex-grow: 1;
 }
 
+.header > h1 {
+    color: white;
+}
+
 .content {
     flex-shrink: 10;
     display: flex;
@@ -29,7 +33,12 @@ body > * {
     overflow: scroll;
 }
 
-.content > p {
+ul {
+    overflow-y: scroll;
+    height: 800px;
+}
+
+.content > ul > li {
     background-color: #f8f8f8;
     border-radius: 3px;
     padding: 8px;

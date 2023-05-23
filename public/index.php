@@ -7,7 +7,7 @@ use Html\WebPage;
 use Entity\Collection\ArtistCollection;
 use Html\AppWebpage;
 
-$webpage = new AppWebpage('Feur');
+$webpage = new AppWebpage('Artistes');
 
 
 
@@ -20,11 +20,12 @@ while (($ligne = $stmt->fetch()) !== false) {
 */
 
 $index = 0;
-
+$webpage->appendContent("<ul>\n");
 while ($index < sizeof($stmt)) {
-    $webpage -> appendContent('<p><a href="/artist.php?artistId='. $webpage->escapeString(strval($stmt[$index]->getId())). '">'. $webpage->escapeString($stmt[$index]->getName()). "></a></p>". "\n");
+    $webpage -> appendContent('<li><a href="/artist.php?artistId='.  $webpage->escapeString(strval($stmt[$index]->getId())). '">'. $webpage->escapeString($stmt[$index]->getName()). "></a></li>". "\n");
     $index++;
 }
+$webpage->appendContent("</ul>\n");
 
 
 echo $webpage ->toHTML();
