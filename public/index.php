@@ -20,12 +20,12 @@ while (($ligne = $stmt->fetch()) !== false) {
 */
 
 $index = 0;
-$webpage->appendContent("<ul>\n");
+$webpage->appendContent("<ol class='list'>\n");
 while ($index < sizeof($stmt)) {
-    $webpage -> appendContent('<li><a href="/artist.php?artistId='.  $webpage->escapeString(strval($stmt[$index]->getId())). '">'. $webpage->escapeString($stmt[$index]->getName()). "></a></li>". "\n");
+    $webpage -> appendContent('<li><a href="/artist.php?artistId='.  $webpage->escapeString(strval($stmt[$index]->getId())). '">'. $webpage->escapeString($stmt[$index]->getName()). "</a></li>". "\n");
     $index++;
 }
-$webpage->appendContent("</ul>\n");
+$webpage->appendContent("</ol>\n");
 
 
 echo $webpage ->toHTML();

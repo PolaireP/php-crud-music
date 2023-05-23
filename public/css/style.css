@@ -33,12 +33,15 @@ body > * {
     overflow: scroll;
 }
 
-ul {
+ol {
     overflow-y: scroll;
-    height: 800px;
+    height: 400px;
+    list-style-type: none;
+    width: calc(100% - 60px);
 }
 
-.content > ul > li {
+.content > ol > li {
+    margin-top: 10px;
     background-color: #f8f8f8;
     border-radius: 3px;
     padding: 8px;
