@@ -6,6 +6,7 @@ use Database\MyPdo;
 use Html\WebPage;
 use Entity\Artist;
 use Entity\Exception\EntityNotFoundException;
+use Html\AppWebpage;
 
 /**
 if(isset($_GET['artistId']) && ctype_digit($_GET['artistId'])) {
@@ -62,16 +63,18 @@ if(isset($_GET['artistId']) && ctype_digit($_GET['artistId'])) {
         exit();
     }
 
-    $webpage = new WebPage('Album de '. $artiste->getName());
+    $webpage = new AppWebpage('Albums de '. $artiste->getName());
 
     $albums = $artiste->getAlbums();
 
     $index = 0;
+    $webpage->appendContent('<ol style="list-style-type: none" class="list">');
     while ($index < count($albums)) {
         $actualAlbum = $albums[$index];
-        $webpage->appendContent("<p>" . $actualAlbum->getYear() . ' ' . $webpage->escapeString($actualAlbum->getName()));
+        $webpage->appendContent("    <li class='album'> ". $actualAlbum->getYear(). "<p class='album__name'>"  . ' ' . $webpage->escapeString($actualAlbum->getName()). "</p></li>\n");
         $index++;
     }
+    $webpage->appendContent('</ol>');
     echo $webpage->toHTML();
 } else {
     header('Location: index.php', response_code: 302);
