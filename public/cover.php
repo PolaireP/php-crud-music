@@ -22,3 +22,6 @@ try {
 } catch (Exception) {
     http_response_code(500);
 }
+
+header('Content-Type: image/jpeg');
+echo($couverture->getJpeg());

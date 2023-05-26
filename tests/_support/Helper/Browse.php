@@ -7,4 +7,8 @@ namespace Tests\Helper;
 
 class Browse extends \Codeception\Module
 {
+    public function seeResponseContentIs(string $expected, string $message='Response content does not match')
+    {
+        $this->assertEquals($expected, $this->getModule('PhpBrowser')->_getResponseContent(), $message);
+    }
 }
