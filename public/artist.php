@@ -71,7 +71,7 @@ if(isset($_GET['artistId']) && ctype_digit($_GET['artistId'])) {
     $webpage->appendContent('<ol style="list-style-type: none" class="list">');
     while ($index < count($albums)) {
         $actualAlbum = $albums[$index];
-        $webpage->appendContent("    <li class='album'> ". $actualAlbum->getYear(). "<p class='album__name'>"  . ' ' . $webpage->escapeString($actualAlbum->getName()). "</p></li>\n");
+        $webpage->appendContent("    <li class='album'> ". "<p class='album__year' style='display:inline'>". $actualAlbum->getYear(). "</p>". " ". "<p class='album__name' style='display: inline'>" . $webpage->escapeString($actualAlbum->getName()). "</p></li>\n");
         $index++;
     }
     $webpage->appendContent('</ol>');
