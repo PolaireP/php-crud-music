@@ -36,7 +36,8 @@ class Cover
         );
         $request->execute([$id]);
         $request->setFetchMode(PDO::FETCH_CLASS, Cover::class);
-        if ($reqFetch = $request->fetch()) {
+        $reqFetch = $request->fetch();
+        if ($reqFetch != false) {
             return $reqFetch;
         } else {
             throw new EntityNotFoundException('Cover introuvable');

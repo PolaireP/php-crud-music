@@ -124,7 +124,7 @@ class WebPage
      * @param string $string
      * @return string
      */
-    public function escapeString(string $string): string
+    public static function escapeString(string $string): string
     {
         return htmlspecialchars($string, flags: ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5, encoding: 'UTF-8');
     }
