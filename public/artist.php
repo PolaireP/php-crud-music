@@ -72,7 +72,7 @@ if(isset($_GET['artistId']) && ctype_digit($_GET['artistId'])) {
     $webpage->appendContent('<ol style="list-style-type: none" class="list">');
     while ($index < count($albums)) {
         $actualAlbum = $albums[$index];
-        $webpage->appendContent("    <li class='album'> ". "<img src='http://localhost:8080/cover.php?coverId={$actualAlbum->getCoverId()}'>" ."<div><p class='album__year'>". $actualAlbum->getYear(). "</p>". " ". "<p class='album__name' >" . $webpage->escapeString($actualAlbum->getName()). "</p></div></li>\n");
+        $webpage->appendContent("    <li class='album'> ". "<img src='/cover.php?coverId={$actualAlbum->getCoverId()}'>" ."<div><p class='album__year'>". $actualAlbum->getYear(). "</p>". " ". "<p class='album__name' >" . $webpage->escapeString($actualAlbum->getName()). "</p></div></li>\n");
         $index++;
     }
     $webpage->appendContent('</ol>');
