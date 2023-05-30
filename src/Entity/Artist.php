@@ -30,7 +30,8 @@ class Artist
     }/**
  * @return string
  */
-    private function __construct() {
+    private function __construct()
+    {
     }
     public function getName(): string
     {
@@ -80,7 +81,7 @@ class Artist
             return $this;
         }
 
-        public function save(): Artist
+        protected function update(): Artist
         {
             $request = MyPdo::getInstance()->prepare(<<<SQL
                 UPDATE artist
@@ -88,14 +89,41 @@ class Artist
                 WHERE id = :id
             SQL);
 
-            $request->execute(['nom' => $this->name, 'id' => $this->id]);
+            $request->execute([':nom' => $this->name, ':id' => $this->id]);
             return $this;
         }
 
-        public static function create(string $name, ?int $id=null) : Artist {
+        public static function create(string $name, ?int $id=null): Artist
+        {
             $artist = new Artist();
             $artist->setId($id);
             $artist->setName($name);
             return $artist;
         }
+
+        protected function insert(): Artist
+        {
+            $stmt = MyPdo::getInstance()->prepare(
+                <<<SQL
+                    INSERT INTO artist (name)
+                    VALUES (:name)
+                SQL
+            );
+
+            $stmt->execute([':name' => $this->name]);
+            $this->id = intval(MyPdo::getInstance()->lastInsertId());
+
+            echo 'AAAAAAAAAAAAAAAa'. $this->getId();
+            return $this;
+        }
+
+        public function save()
+        {
+            if ($this->id === null) {
+                $this->insert();
+            } else {
+                $this->update();
+            }
+        }
+
 }
