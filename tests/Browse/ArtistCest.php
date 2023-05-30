@@ -101,4 +101,14 @@ class ArtistCest
         // Check if strings are escaped
         $I->seeInSource('S&amp;M');
     }
+
+    public function delete(CrudTester $I)
+    {
+        $artist = Artist::findById(4);
+        $artist->delete();
+        $I->cantSeeInDatabase('artist', ['id' => 4]);
+        $I->cantSeeInDatabase('artist', ['name' => 'Slipknot']);
+        $I->assertNull($artist->getId());
+        $I->assertSame('Slipknot', $artist->getName());
+    }
 }
