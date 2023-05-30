@@ -4,3 +4,4 @@
 vendor/
 tests/musiclite.sqlite
 tests/musiclite.sqlite_snapshot
+/.mypdo.ini
