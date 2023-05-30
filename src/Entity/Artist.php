@@ -30,6 +30,8 @@ class Artist
     }/**
  * @return string
  */
+    private function __construct() {
+    }
     public function getName(): string
     {
         return $this->name;
@@ -41,7 +43,7 @@ class Artist
             $this->name = $name;
         }
 
-        public function findById(int $id): Artist
+        public static function findById(int $id): Artist
         {
             $request = MyPdo::getInstance()->prepare(
                 <<<SQL
@@ -78,4 +80,22 @@ class Artist
             return $this;
         }
 
+        public function save(): Artist
+        {
+            $request = MyPdo::getInstance()->prepare(<<<SQL
+                UPDATE artist
+                SET name = :nom
+                WHERE id = :id
+            SQL);
+
+            $request->execute(['nom' => $this->name, 'id' => $this->id]);
+            return $this;
+        }
+
+        public static function create(string $name, ?int $id=null) : Artist {
+            $artist = new Artist();
+            $artist->setId($id);
+            $artist->setName($name);
+            return $artist;
+        }
 }
